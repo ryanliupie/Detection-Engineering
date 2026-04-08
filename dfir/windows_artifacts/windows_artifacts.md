@@ -86,5 +86,28 @@ On Windows, we can also navigate to `%SystemRoot%\System32\config\`. It could be
 - ### HKEY CURRENT_CONFIG
 
     This registry contains information about the hardware profile that is used by the local computer at system startup. 
-    
+<hr>
+
+## Transaction Logs and Backups
+
+<b>Transaction Log:</b> This type of log is also known as a database log. It is a history of actions that the `database management system` executes to ensure `data integrity`. It can be considered the journal of the changelog for the registry hive. Windows often uses transaction logs when writing data to registry hives. 
+
+<b><i>Functionality:</i></b>
+
+- If the system crashes, this allows you to restore to a point prior in failure. 
+- Has audit traces of all transactions 
+- Error detection and correction functionalities  
+
+<b><i>Challenges and Limitations:</i></b>
+
+- If Transaction logs are not properly managed, they can be a `bottleneck` for database performance. 
+- They can consume a significant amount of storage space
+
+<b><i>Registry Backups:</i></b> These are the opposite from transaction logs as they are the backups of the registry hives stored in the  `C:\Windows\System32\Config` directory. These hives are copied to the `\Windows\System32\Config\RegBack`  directory.  
+
+When analyzing registry's, it is recommended to make a copy of the required dta and perform forensics on it. This is because when we go to copy the resgisry hives from `%WINDIR%\System32\Config`, they are restricted. 
+
+To acquire these files, we utilise tools such as `KAPE`, `Autopsy`, and `FTK Imager`. 
+
+After acquiring these files, we need a tool to seem them which include `AccessData's Registry Viewer`, `Zimmerman's Registry Explorer`, and `RegRipper`. 
 
