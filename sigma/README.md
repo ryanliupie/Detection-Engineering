@@ -23,3 +23,24 @@ Signatures only catch <b>KNOWN</b> threats. If an attacker changes their pattern
 - Behavioural signatures (like Sigma) are harder to evade than static ones (IPs). 
 - Security teams constantly update and refine their signature libraries 
 - Signature-based detection is usually paired with anomoly-based detection for better coverage. 
+
+## Important Nuances 
+
+In detection engineering, Sigma is a `amazing starting point`, but it is `not the finished product`. From professionals, open source detections help skip a huge amount of work, where Sigma gets you 80% there, but your team has to finish the last 20%. 
+
+<b>Last 20%</b>
+
+- Integration with your tools 
+- Tuning the detection to match environment and reduce false positives 
+- Matching business behaviour ("is this activity abnormal for us?")
+
+<b>A Sigma rule might say:</b> Detect PowerShell downloading files from the internet. 
+
+However, in your environment: 
+
+- Developers may do this all day 
+- SIEM may store logs differently 
+- EDR has better fields 
+- Admins use the files legitimately 
+
+You `MUST understand your own tools` and not solely rely on Sigma rules. Mature detection engineering involves using Sigma and other open-source detections as a starting point, then `adapting and tuning them to your environment` and business behavior. This improves the signal-to-noise ratio and results in higher-fidelity alerts.
